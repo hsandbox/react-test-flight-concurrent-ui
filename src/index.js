@@ -11,10 +11,13 @@ const initialResource = fetchProfileData(0);
 
 function App() {
   const [resource, setResource] = useState(initialResource);
+  const [startTransition, isPending] = useTransition({ timeoutMs: 3000 });
 
   function handleButtonClick() {
-    const nextUserId = getNextId(resource.userId);
-    setResource(fetchProfileData(nextUserId));
+    startTransition(() => {
+      const nextUserId = getNextId(resource.userId);
+      setResource(fetchProfileData(nextUserId));
+    });
   }
 
   return (
