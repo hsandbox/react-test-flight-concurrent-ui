@@ -22,7 +22,10 @@ function App() {
 
   return (
     <>
-      <button onClick={handleButtonClick}>Next</button>
+      <button disabled={isPending} onClick={handleButtonClick}>
+        Next
+      </button>
+      {isPending ? "Loading..." : null}
       <ProfilePage resource={resource} />
     </>
   );
